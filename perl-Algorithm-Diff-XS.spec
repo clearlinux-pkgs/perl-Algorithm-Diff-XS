@@ -4,16 +4,16 @@
 #
 Name     : perl-Algorithm-Diff-XS
 Version  : 0.04
-Release  : 1
+Release  : 2
 URL      : https://cpan.metacpan.org/authors/id/A/AU/AUDREYT/Algorithm-Diff-XS-0.04.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/A/AU/AUDREYT/Algorithm-Diff-XS-0.04.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/liba/libalgorithm-diff-xs-perl/libalgorithm-diff-xs-perl_0.04-5.debian.tar.xz
 Summary  : Algorithm::Diff with XS core loop
 Group    : Development/Tools
 License  : Artistic-1.0 Artistic-1.0-Perl GPL-1.0
-Requires: perl-Algorithm-Diff-XS-lib
-Requires: perl-Algorithm-Diff-XS-license
-Requires: perl-Algorithm-Diff-XS-man
+Requires: perl-Algorithm-Diff-XS-lib = %{version}-%{release}
+Requires: perl-Algorithm-Diff-XS-license = %{version}-%{release}
+BuildRequires : buildreq-cpan
 BuildRequires : perl(Algorithm::Diff)
 
 %description
@@ -24,10 +24,20 @@ SYNOPSIS
 # and C<LCSidx> will run much faster for large data sets.
 use Algorithm::Diff::XS qw( compact_diff LCSidx );
 
+%package dev
+Summary: dev components for the perl-Algorithm-Diff-XS package.
+Group: Development
+Requires: perl-Algorithm-Diff-XS-lib = %{version}-%{release}
+Provides: perl-Algorithm-Diff-XS-devel = %{version}-%{release}
+
+%description dev
+dev components for the perl-Algorithm-Diff-XS package.
+
+
 %package lib
 Summary: lib components for the perl-Algorithm-Diff-XS package.
 Group: Libraries
-Requires: perl-Algorithm-Diff-XS-license
+Requires: perl-Algorithm-Diff-XS-license = %{version}-%{release}
 
 %description lib
 lib components for the perl-Algorithm-Diff-XS package.
@@ -41,19 +51,11 @@ Group: Default
 license components for the perl-Algorithm-Diff-XS package.
 
 
-%package man
-Summary: man components for the perl-Algorithm-Diff-XS package.
-Group: Default
-
-%description man
-man components for the perl-Algorithm-Diff-XS package.
-
-
 %prep
-tar -xf %{SOURCE1}
-cd ..
 %setup -q -n Algorithm-Diff-XS-0.04
-mkdir -p %{_topdir}/BUILD/Algorithm-Diff-XS-0.04/deblicense/
+cd ..
+%setup -q -T -D -n Algorithm-Diff-XS-0.04 -b 1
+mkdir -p deblicense/
 mv %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/Algorithm-Diff-XS-0.04/deblicense/
 
 %build
@@ -78,12 +80,12 @@ make TEST_VERBOSE=1 test
 
 %install
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/perl-Algorithm-Diff-XS
-cp deblicense/copyright %{buildroot}/usr/share/doc/perl-Algorithm-Diff-XS/deblicense_copyright
+mkdir -p %{buildroot}/usr/share/package-licenses/perl-Algorithm-Diff-XS
+cp deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-Algorithm-Diff-XS/deblicense_copyright
 if test -f Makefile.PL; then
-make pure_install PERL_INSTALL_ROOT=%{buildroot}
+make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
-./Build install --installdirs=site --destdir=%{buildroot}
+./Build install --installdirs=vendor --destdir=%{buildroot}
 fi
 find %{buildroot} -type f -name .packlist -exec rm -f {} ';'
 find %{buildroot} -depth -type d -exec rmdir {} 2>/dev/null ';'
@@ -92,16 +94,16 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/site_perl/5.26.1/x86_64-linux-thread-multi/Algorithm/Diff/XS.pm
+/usr/lib/perl5/vendor_perl/5.26.1/x86_64-linux-thread-multi/Algorithm/Diff/XS.pm
+
+%files dev
+%defattr(-,root,root,-)
+/usr/share/man/man3/Algorithm::Diff::XS.3
 
 %files lib
 %defattr(-,root,root,-)
-/usr/lib/perl5/site_perl/5.26.1/x86_64-linux-thread-multi/auto/Algorithm/Diff/XS/XS.so
+/usr/lib/perl5/vendor_perl/5.26.1/x86_64-linux-thread-multi/auto/Algorithm/Diff/XS/XS.so
 
 %files license
-%defattr(-,root,root,-)
-/usr/share/doc/perl-Algorithm-Diff-XS/deblicense_copyright
-
-%files man
-%defattr(-,root,root,-)
-/usr/share/man/man3/Algorithm::Diff::XS.3
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/perl-Algorithm-Diff-XS/deblicense_copyright
