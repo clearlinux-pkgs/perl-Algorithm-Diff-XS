@@ -4,7 +4,7 @@
 #
 Name     : perl-Algorithm-Diff-XS
 Version  : 0.04
-Release  : 2
+Release  : 3
 URL      : https://cpan.metacpan.org/authors/id/A/AU/AUDREYT/Algorithm-Diff-XS-0.04.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/A/AU/AUDREYT/Algorithm-Diff-XS-0.04.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/liba/libalgorithm-diff-xs-perl/libalgorithm-diff-xs-perl_0.04-5.debian.tar.xz
@@ -94,7 +94,7 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.26.1/x86_64-linux-thread-multi/Algorithm/Diff/XS.pm
+/usr/lib/perl5/vendor_perl/5.28.0/x86_64-linux-thread-multi/Algorithm/Diff/XS.pm
 
 %files dev
 %defattr(-,root,root,-)
@@ -102,7 +102,7 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files lib
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.26.1/x86_64-linux-thread-multi/auto/Algorithm/Diff/XS/XS.so
+/usr/lib/perl5/vendor_perl/5.28.0/x86_64-linux-thread-multi/auto/Algorithm/Diff/XS/XS.so
 
 %files license
 %defattr(0644,root,root,0755)
