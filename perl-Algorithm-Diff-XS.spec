@@ -4,7 +4,7 @@
 #
 Name     : perl-Algorithm-Diff-XS
 Version  : 0.04
-Release  : 10
+Release  : 11
 URL      : https://cpan.metacpan.org/authors/id/A/AU/AUDREYT/Algorithm-Diff-XS-0.04.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/A/AU/AUDREYT/Algorithm-Diff-XS-0.04.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/liba/libalgorithm-diff-xs-perl/libalgorithm-diff-xs-perl_0.04-5.debian.tar.xz
@@ -82,7 +82,7 @@ make TEST_VERBOSE=1 test
 %install
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/perl-Algorithm-Diff-XS
-cp %{_builddir}/Algorithm-Diff-XS-0.04/deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-Algorithm-Diff-XS/49df8198b4a3807f63194671a3d2e74ae1fbd6ec
+cp %{_builddir}/debian/copyright %{buildroot}/usr/share/package-licenses/perl-Algorithm-Diff-XS/49df8198b4a3807f63194671a3d2e74ae1fbd6ec
 if test -f Makefile.PL; then
 make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
@@ -106,5 +106,5 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files perl
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.30.1/x86_64-linux-thread-multi/Algorithm/Diff/XS.pm
-/usr/lib/perl5/vendor_perl/5.30.1/x86_64-linux-thread-multi/auto/Algorithm/Diff/XS/XS.so
+/usr/lib/perl5/vendor_perl/5.30.2/x86_64-linux-thread-multi/Algorithm/Diff/XS.pm
+/usr/lib/perl5/vendor_perl/5.30.2/x86_64-linux-thread-multi/auto/Algorithm/Diff/XS/XS.so
