@@ -1,2 +1,3 @@
 0.04
 perl(Algorithm::Diff)
+perl(Getopt::Long)
