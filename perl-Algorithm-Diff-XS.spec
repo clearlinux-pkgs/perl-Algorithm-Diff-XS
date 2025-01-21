@@ -7,7 +7,7 @@
 #
 Name     : perl-Algorithm-Diff-XS
 Version  : 0.04
-Release  : 25
+Release  : 26
 URL      : https://cpan.metacpan.org/authors/id/A/AU/AUDREYT/Algorithm-Diff-XS-0.04.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/A/AU/AUDREYT/Algorithm-Diff-XS-0.04.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/liba/libalgorithm-diff-xs-perl/libalgorithm-diff-xs-perl_0.04-5.debian.tar.xz
